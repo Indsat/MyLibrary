@@ -2,54 +2,28 @@ package ru.nicholas.library.java.text;
 
 public class ProgressBar {
 
-    private final double current, max;
-
-    private final int count;
-
-    private final String yesColor, noColor, symbol;
-
-    public ProgressBar(double current, double max, int symbolCount) {
-
-        this.current = current;
-
-        this.max = max;
-
-        this.count = symbolCount;
-
-        this.yesColor = "§a";
-
-        this.noColor = "§7";
-
-        this.symbol = "•";
-    }
-
-    public String getProgressBar() {
-
-        double tenPercent = (current / max) * count;
-
+    public static String createBar(double current,
+                                   double max,
+                                   int symbolCount,
+                                   String yesColor,
+                                   String noColor,
+                                   String symbol) {
+        double tenPercent = (current / max) * symbolCount;
         int percent = (int) Math.round(tenPercent);
-
         StringBuilder bar = new StringBuilder();
-
-        for (int i = 0; i < percent; i++) {
-
-            bar.append(symbol);
-        }
         bar.append(yesColor);
-
-        for (int i = 0; i < count - percent; i++) {
-
+        for (int i = 0; i < percent && bar.length() < symbolCount; i++) {
             bar.append(symbol);
         }
-
         bar.append(noColor);
-
+        for (int i = 0; i < symbolCount - percent && bar.length() < symbolCount; i++) {
+            bar.append(symbol);
+        }
         return bar.toString();
     }
 
-    public String getPercent() {
+    public static String getPercent(double current, double max) {
         double allPercent = (current / max) * 100;
-
         return ((int) Math.round(allPercent)) + "%";
     }
 }
