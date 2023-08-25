@@ -1,7 +1,9 @@
-package ru.nicholas.java.database.query.query;
+package ru.nicholas.library.java.database.query.query;
 
-import ru.nicholas.java.database.SQLOperations;
+import ru.nicholas.library.java.database.DataBase;
+import ru.nicholas.library.java.database.SQLConnector;
 
+import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class SQLQuery implements Query {
         return new Delete(table);
     }
 
-    public static InsertOrUpdate insertOrUpdate(String table) { return new InsertOrUpdate(table); }
+    public static InsertOrUpdate insertOrUpdate(DataBase dataBase, String table) { return new InsertOrUpdate(dataBase, table); }
 
     public static class Select implements Query {
         private final String table;
@@ -333,8 +335,10 @@ public class SQLQuery implements Query {
         private final String targetTable;
         private final Map<String, Object> sets = new HashMap<>();
         private final List<Where> wheres = new ArrayList<>();
+        private final SQLConnector sqlConnector;
 
-        private InsertOrUpdate(String targetTable) {
+        private InsertOrUpdate(DataBase dataBase, String targetTable) {
+            this.sqlConnector = (SQLConnector) dataBase.getConnector();
             this.targetTable = targetTable;
         }
 
@@ -376,7 +380,7 @@ public class SQLQuery implements Query {
             if (wheres.isEmpty()) {
                 return false;
             }
-            return SQLOperations.executeQuery("SELECT * FROM `" + targetTable + "` WHERE " + buildWhereString(wheres),
+            return sqlConnector.executeQuery("SELECT * FROM `" + targetTable + "` WHERE " + buildWhereString(wheres),
                     ResultSet::next);
         }
 

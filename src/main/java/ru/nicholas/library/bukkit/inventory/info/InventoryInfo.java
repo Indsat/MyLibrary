@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.inventory.info;
+package ru.nicholas.library.bukkit.inventory.info;
 
 public class InventoryInfo {
 

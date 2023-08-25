@@ -1,7 +1,6 @@
-package ru.nicholas.java.database.mysql;
+package ru.nicholas.library.java.database.mysql;
 
-import ru.nicholas.java.database.Connector;
-import ru.nicholas.moontime.clans.file.ConfigFile;
+import ru.nicholas.library.java.database.SQLConnector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,12 +9,16 @@ import java.sql.SQLException;
 /**
  * @author Nicholas Alexandrov 26.07.2023
  */
-public class MySQLConnector implements Connector {
+public class MySQLConnector extends SQLConnector {
 
     private final Connection connection;
 
-    public MySQLConnector() {
+    private final String url, user, password;
 
+    public MySQLConnector(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
         this.connection = connect();
     }
 
@@ -28,34 +31,22 @@ public class MySQLConnector implements Connector {
 
     @Override
     public Connection connect() {
-
         Connection connection = null;
-
         try {
-
-            String url = "jdbc:mysql//" + ConfigFile.MySQL_URL;
-
-            connection = DriverManager.getConnection(url, ConfigFile.MySQL_USER, ConfigFile.MySQL_PASSWORD);
-
+            String url = "jdbc:mysql//" + this.url;
+            connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-
             System.out.println("An error occurred while connecting to SQLite database: " + e.getSQLState());
         }
-
         return connection;
     }
 
     @Override
     public void close() {
-
         if (isConnected()) {
-
             try {
-
                 connection.close();
-
             } catch (SQLException e) {
-
                 System.out.println("An error occurred while disconnect to SQLite database: " + e.getSQLState());
             }
         }
@@ -63,7 +54,6 @@ public class MySQLConnector implements Connector {
 
     @Override
     public boolean isConnected() {
-
         return connection != null;
     }
 

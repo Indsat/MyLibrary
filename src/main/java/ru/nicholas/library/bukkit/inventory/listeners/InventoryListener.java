@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.inventory.listeners;
+package ru.nicholas.library.bukkit.inventory.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -6,10 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import ru.nicholas.bukkit.inventory.BaseInventory;
-import ru.nicholas.bukkit.inventory.alternative.PagedInventory;
-import ru.nicholas.bukkit.inventory.buttons.Button;
-import ru.nicholas.bukkit.inventory.service.InventoryService;
+import ru.nicholas.library.bukkit.inventory.BaseInventory;
+import ru.nicholas.library.bukkit.inventory.alternative.PagedInventory;
+import ru.nicholas.library.bukkit.inventory.buttons.Button;
+import ru.nicholas.library.bukkit.inventory.service.InventoryService;
 
 public class InventoryListener implements Listener {
 
@@ -49,14 +49,12 @@ public class InventoryListener implements Listener {
         }
     }
 
+
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         Player player = (Player) e.getPlayer();
-
         BaseInventory inventory = InventoryService.get(player);
-
         PagedInventory pagedInventory = InventoryService.getPaged(player);
-
         if (pagedInventory != null) {
             pagedInventory.close(player);
         } else if (inventory != null) {

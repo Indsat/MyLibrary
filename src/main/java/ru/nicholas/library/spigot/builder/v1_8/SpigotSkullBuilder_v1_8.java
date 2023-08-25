@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.builder.v1_8;
+package ru.nicholas.library.spigot.builder.v1_8;
 
 import com.cryptomorin.xseries.XEnchantment;
 import com.cryptomorin.xseries.XMaterial;
@@ -7,8 +7,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import ru.nicholas.core.VersionAdapter;
-import ru.nicholas.core.builder.SkullBuilder;
+import ru.nicholas.library.core.VersionAdapter;
+import ru.nicholas.library.core.builder.SkullBuilder;
 
 import java.util.List;
 import java.util.Objects;

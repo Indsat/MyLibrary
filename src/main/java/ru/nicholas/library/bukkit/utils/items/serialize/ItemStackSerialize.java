@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.utils.items.serialize;
+package ru.nicholas.library.bukkit.utils.items.serialize;
 
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -8,8 +8,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
-import ru.nicholas.bukkit.utils.VersionsUtil;
-import ru.nicholas.bukkit.utils.items.ItemUtil;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.bukkit.utils.items.ItemUtil;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class ItemStackSerialize implements ObjectSerialize<ItemStack> {
     @Override
     public String serialize(ItemStack object) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(object.getType()).append(":").append(object.getAmount()).append(" ");
+        stringBuilder.append(object.getType()).append(":").append(object.getAmount()).append(":");
 
         if (object.hasItemMeta()) {
             ItemMeta itemMeta = object.getItemMeta();
@@ -34,7 +34,7 @@ public class ItemStackSerialize implements ObjectSerialize<ItemStack> {
                 if (itemMeta.hasCustomModelData()) {
                     stringBuilder.append(":")
                             .append(itemMeta.getCustomModelData())
-                            .append(" ");
+                            .append(":");
                 }
             }
 
@@ -49,7 +49,7 @@ public class ItemStackSerialize implements ObjectSerialize<ItemStack> {
                             .append(potionEffect.getDuration())
                             .append(":")
                             .append(potionEffect.getAmplifier())
-                            .append(" ");
+                            .append(":");
                 }
                 if (potionMeta.hasCustomEffects()) {
                     for (PotionEffect potionEffect : potionMeta.getCustomEffects()) {
@@ -58,7 +58,7 @@ public class ItemStackSerialize implements ObjectSerialize<ItemStack> {
                                 .append(potionEffect.getDuration())
                                 .append(":")
                                 .append(potionEffect.getAmplifier())
-                                .append(" ");
+                                .append(":");
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class ItemStackSerialize implements ObjectSerialize<ItemStack> {
                 stringBuilder.append(entry.getKey().getKey())
                         .append(":")
                         .append(entry.getValue())
-                        .append(" ");
+                        .append(":");
             }
         }
         return stringBuilder.toString();

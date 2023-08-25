@@ -1,11 +1,11 @@
-package ru.nicholas.spigot.builder.v1_12;
+package ru.nicholas.library.spigot.builder.v1_12;
 
 import com.cryptomorin.xseries.XPotion;
 import org.bukkit.Color;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import ru.nicholas.core.builder.PotionEffectBuilder;
-import ru.nicholas.spigot.utils.universal.SpigotPotionEffectUtil;
+import ru.nicholas.library.core.builder.PotionEffectBuilder;
+import ru.nicholas.library.spigot.utils.universal.SpigotPotionEffectUtil;
 
 import java.util.Optional;
 
@@ -14,15 +14,15 @@ import java.util.Optional;
  */
 public class SpigotPotionEffectBuilder_v1_12 implements PotionEffectBuilder {
 
-    private boolean ambient;
+    protected boolean ambient;
 
-    private int amplifier;
+    protected int amplifier;
 
-    private int duration;
+    protected int duration;
 
-    private boolean particles;
+    protected boolean particles;
 
-    private PotionEffectType type;
+    protected PotionEffectType type;
 
     private Color color;
 

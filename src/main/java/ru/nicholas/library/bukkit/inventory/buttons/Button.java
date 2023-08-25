@@ -1,7 +1,7 @@
-package ru.nicholas.bukkit.inventory.buttons;
+package ru.nicholas.library.bukkit.inventory.buttons;
 
 import org.bukkit.inventory.ItemStack;
-import ru.nicholas.bukkit.inventory.click.Click;
+import ru.nicholas.library.bukkit.inventory.click.Click;
 
 public class Button {
 

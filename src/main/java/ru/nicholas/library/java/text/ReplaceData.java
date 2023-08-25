@@ -1,4 +1,4 @@
-package ru.nicholas.java.text;
+package ru.nicholas.library.java.text;
 
 
 public class ReplaceData {
@@ -8,9 +8,7 @@ public class ReplaceData {
     private final Object object;
 
     public  ReplaceData(String key, Object object) {
-
         this.key = key;
-
         this.object = object;
     }
 

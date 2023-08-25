@@ -1,6 +1,5 @@
-package ru.nicholas.bukkit.file;
+package ru.nicholas.library.bukkit.file;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -17,44 +16,34 @@ public class FileRepository {
 
     private static final List<YamlFile> files;
 
-    private static final Plugin plugin;
-
     static {
 
         files = new ArrayList<>();
 
-        plugin = Bukkit.getPluginManager().getPlugin("LeakBlackMarket");
-
-        load();
     }
 
-
-    public static void load() {
-
+    public static void load(Plugin plugin) {
         files.addAll(Arrays.stream(Objects.requireNonNull(plugin.getDataFolder().listFiles())).filter(File::isFile)
                 .filter(file -> file.getName().endsWith(".yml"))
-                .map(file -> new YamlFile(file.getAbsolutePath()))
+                .map(file -> new YamlFile(plugin, file.getName()))
                 .collect(Collectors.toList()));
     }
 
-    public static YamlFile getByName(String name) {
-
+    public static YamlFile getByName(Plugin plugin, String name) {
         try {
-
-            return get(name);
-
+            return get(plugin, name);
         } catch (FileNotFoundException e) {
-
             throw new RuntimeException(e);
         }
     }
 
-    private static YamlFile get(String name) throws FileNotFoundException {
-
-        Optional<YamlFile> optional = files.stream().filter(file -> file.getName().equals(name)).findFirst();
+    private static YamlFile get(Plugin plugin, String name) throws FileNotFoundException {
+        Optional<YamlFile> optional = files.stream()
+                .filter(predicate -> predicate.getPlugin().getName().equals(plugin.getName()))
+                .filter(predicate -> predicate.getName().equals(name))
+                .findFirst();
 
         if (optional.isPresent()) {
-
             return optional.get();
         }
 

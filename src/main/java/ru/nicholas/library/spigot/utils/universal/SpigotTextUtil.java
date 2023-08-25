@@ -1,8 +1,8 @@
-package ru.nicholas.spigot.utils.universal;
+package ru.nicholas.library.spigot.utils.universal;
 
 import net.md_5.bungee.api.ChatColor;
-import ru.nicholas.bukkit.utils.VersionsUtil;
-import ru.nicholas.java.text.ReplaceData;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.java.text.ReplaceData;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -55,6 +55,7 @@ public class SpigotTextUtil  {
 
     public String setReplaces(String text, ReplaceData... replacesData) {
         for (ReplaceData replaceData : replacesData) {
+            if (replaceData.getKey() == null || replaceData.getObject() == null) continue;
             text = text.replace(replaceData.getKey(), replaceData.getObject().toString());
         }
 

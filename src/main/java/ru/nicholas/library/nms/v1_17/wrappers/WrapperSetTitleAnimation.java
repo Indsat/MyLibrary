@@ -1,8 +1,8 @@
-package ru.nicholas.nms.v1_17.wrappers;
+package ru.nicholas.library.nms.v1_17.wrappers;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
-import ru.nicholas.nms.AbstractPacket;
+import ru.nicholas.library.nms.AbstractPacket;
 
 public class WrapperSetTitleAnimation extends AbstractPacket {
 

@@ -1,4 +1,4 @@
-package ru.nicholas.java.database.table;
+package ru.nicholas.library.java.database.table;
 
 public final class TableColumn {
     private final String name;

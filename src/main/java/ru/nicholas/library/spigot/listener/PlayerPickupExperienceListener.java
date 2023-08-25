@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.listener;
+package ru.nicholas.library.spigot.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.ExperienceOrb;
@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerExpChangeEvent;
-import ru.nicholas.spigot.event.PlayerPickupExperienceEvent;
+import ru.nicholas.library.spigot.event.PlayerPickupExperienceEvent;
 
 import java.util.Comparator;
 

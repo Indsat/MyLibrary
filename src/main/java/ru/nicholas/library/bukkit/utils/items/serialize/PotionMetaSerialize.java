@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.utils.items.serialize;
+package ru.nicholas.library.bukkit.utils.items.serialize;
 
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;

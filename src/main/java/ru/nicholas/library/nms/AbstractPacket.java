@@ -1,4 +1,4 @@
-package ru.nicholas.nms;
+package ru.nicholas.library.nms;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;

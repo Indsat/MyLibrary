@@ -1,4 +1,4 @@
-package ru.nicholas.java.database;
+package ru.nicholas.library.java.database;
 
 import java.sql.SQLException;
 

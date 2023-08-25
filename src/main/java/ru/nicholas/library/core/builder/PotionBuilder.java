@@ -1,4 +1,4 @@
-package ru.nicholas.core.builder;
+package ru.nicholas.library.core.builder;
 
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;

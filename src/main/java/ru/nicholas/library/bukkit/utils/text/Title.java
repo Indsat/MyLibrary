@@ -1,8 +1,8 @@
-package ru.nicholas.bukkit.utils.text;
+package ru.nicholas.library.bukkit.utils.text;
 
 import org.bukkit.entity.Player;
-import ru.nicholas.core.VersionAdapter;
-import ru.nicholas.nms.TitlePackets;
+import ru.nicholas.library.core.VersionAdapter;
+import ru.nicholas.library.nms.TitlePackets;
 
 import java.util.Objects;
 

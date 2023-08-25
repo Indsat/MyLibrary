@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.utils.items.serialize;
+package ru.nicholas.library.bukkit.utils.items.serialize;
 
 import org.bukkit.potion.PotionEffect;
 
@@ -9,8 +9,7 @@ public class PotionEffectSerialize implements ObjectSerialize<PotionEffect> {
     @Override
     public String serialize(PotionEffect object) {
 
-        return "PotionEffect:" +
-                object.getType().getName() +
+        return object.getType().getName() +
                 ":" +
                 object.getDuration() +
                 ":" +

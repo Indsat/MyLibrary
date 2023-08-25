@@ -1,10 +1,10 @@
-package ru.nicholas.spigot.utils.v1_19;
+package ru.nicholas.library.spigot.utils.v1_19;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.inventory.meta.SkullMeta;
-import ru.nicholas.bukkit.utils.VersionsUtil;
-import ru.nicholas.core.util.SkullUtils;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.core.util.SkullUtils;
 
 import java.lang.reflect.Field;
 import java.util.Base64;

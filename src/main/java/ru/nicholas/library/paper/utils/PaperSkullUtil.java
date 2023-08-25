@@ -1,7 +1,7 @@
-package ru.nicholas.paper.utils;
+package ru.nicholas.library.paper.utils;
 
 import org.bukkit.inventory.meta.SkullMeta;
-import ru.nicholas.core.util.SkullUtils;
+import ru.nicholas.library.core.util.SkullUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

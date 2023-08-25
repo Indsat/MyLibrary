@@ -1,4 +1,4 @@
-package ru.nicholas.core.builder;
+package ru.nicholas.library.core.builder;
 
 /**
  * @author Nicholas Alexandrov 20.06.2023

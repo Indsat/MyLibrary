@@ -1,15 +1,15 @@
-package ru.nicholas.bukkit.inventory.types;
+package ru.nicholas.library.bukkit.inventory.types;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
-import ru.nicholas.bukkit.inventory.BaseInventory;
-import ru.nicholas.bukkit.inventory.buttons.Button;
-import ru.nicholas.bukkit.inventory.info.InventoryInfo;
-import ru.nicholas.bukkit.inventory.items.DefaultItem;
-import ru.nicholas.bukkit.inventory.service.InventoryService;
-import ru.nicholas.bukkit.utils.items.ItemUtil;
-import ru.nicholas.core.VersionAdapter;
+import ru.nicholas.library.bukkit.inventory.BaseInventory;
+import ru.nicholas.library.bukkit.inventory.buttons.Button;
+import ru.nicholas.library.bukkit.inventory.info.InventoryInfo;
+import ru.nicholas.library.bukkit.inventory.service.InventoryService;
+import ru.nicholas.library.bukkit.utils.InventoryUtil;
+import ru.nicholas.library.core.VersionAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,18 +22,17 @@ import java.util.Map;
 public abstract class ChestInventory implements BaseInventory {
 
     private final Inventory inventory; // Инвентарь Bukkit
-
     private final InventoryInfo info; // Информация об инвентаре
-
     private final Map<Integer, Button> buttons; // список кнопок в инвентаре
-
     private final List<Integer> frameSlots; // слоты являющиеся заполнителями
+    private final FileConfiguration fileConfiguration;
 
-    public ChestInventory(String title, int rows) {
+    public ChestInventory(FileConfiguration fileConfiguration, String title, int rows) {
         this.inventory = VersionAdapter.InventoryUtils().createInventory(null, rows * 9, title);
-        this.info = new InventoryInfo((String) VersionAdapter.TextUtil().colorize(title), rows * 9);
+        this.info = new InventoryInfo(VersionAdapter.TextUtil().colorize(title), rows * 9);
         this.buttons = new HashMap<>();
         this.frameSlots = new ArrayList<>();
+        this.fileConfiguration = fileConfiguration;
     }
 
     @Override
@@ -53,7 +52,7 @@ public abstract class ChestInventory implements BaseInventory {
 
     public void update(Player player) {
         clear();
-        frame();
+        frame(player);
         generateInventory(player);
         setupItems();
     }
@@ -62,7 +61,6 @@ public abstract class ChestInventory implements BaseInventory {
 
     public void clear() {
         buttons.clear();
-        inventory.clear();
     }
 
     @Override
@@ -71,7 +69,6 @@ public abstract class ChestInventory implements BaseInventory {
     }
 
     public void setupItems() {
-
         buttons.forEach( (slot, button) -> inventory.setItem(slot, button.getItemStack()));
     }
 
@@ -81,9 +78,8 @@ public abstract class ChestInventory implements BaseInventory {
         this.frameSlots.add(slot);
     }
 
-    public void frame() {
-
-        this.frameSlots.forEach(slot -> setItem(slot, ItemUtil.createDefaultItem(DefaultItem.FRAME_ITEM)));
+    public void frame(Player player) {
+        this.frameSlots.forEach(slot -> setItem(slot, InventoryUtil.createItem(fileConfiguration, player, "inventories.inventory.frame-item")));
     }
 
     @Override
@@ -94,5 +90,10 @@ public abstract class ChestInventory implements BaseInventory {
     @Override
     public @NotNull Inventory getInventory() {
         return this.inventory;
+    }
+
+    @Override
+    public FileConfiguration getFileConfiguration() {
+        return fileConfiguration;
     }
 }

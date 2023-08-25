@@ -1,12 +1,12 @@
-package ru.nicholas.nms.v1_17;
+package ru.nicholas.library.nms.v1_17;
 
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import org.bukkit.entity.Player;
-import ru.nicholas.nms.TitlePackets;
-import ru.nicholas.nms.v1_17.wrappers.WrapperSetActionBarText;
-import ru.nicholas.nms.v1_17.wrappers.WrapperSetSubtitleText;
-import ru.nicholas.nms.v1_17.wrappers.WrapperSetTitleAnimation;
-import ru.nicholas.nms.v1_17.wrappers.WrapperSetTitleText;
+import ru.nicholas.library.nms.TitlePackets;
+import ru.nicholas.library.nms.v1_17.wrappers.WrapperSetActionBarText;
+import ru.nicholas.library.nms.v1_17.wrappers.WrapperSetSubtitleText;
+import ru.nicholas.library.nms.v1_17.wrappers.WrapperSetTitleAnimation;
+import ru.nicholas.library.nms.v1_17.wrappers.WrapperSetTitleText;
 
 public class CraftTitlePackets_v1_17 implements TitlePackets {
 

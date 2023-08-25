@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.builder.universal;
+package ru.nicholas.library.spigot.builder.universal;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -6,7 +6,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.KeybindComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
-import ru.nicholas.core.builder.MessageBuilder;
+import ru.nicholas.library.core.builder.MessageBuilder;
 
 /**
  * @author Nicholas Alexandrov 19.06.2023

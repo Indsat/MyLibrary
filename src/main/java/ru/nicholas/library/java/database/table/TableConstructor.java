@@ -1,6 +1,7 @@
-package ru.nicholas.java.database.table;
+package ru.nicholas.library.java.database.table;
 
-import ru.nicholas.java.database.SQLOperations;
+import ru.nicholas.library.java.database.DataBase;
+import ru.nicholas.library.java.database.SQLConnector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,13 +42,13 @@ public final class TableConstructor {
                 + ");";
     }
 
-    public void create() {
-
-        SQLOperations.execute(this.toString());
-
-        for (String columnName : columns) {
-
-            SQLOperations.execute("ALTER TABLE `" + name + "` ADD INDEX (`" + columnName + "`);");
+    public void create(DataBase dataBase) {
+        if (dataBase.getConnector() instanceof SQLConnector) {
+            SQLConnector sqlConnector = (SQLConnector) dataBase.getConnector();
+            sqlConnector.execute(this.toString());
+            for (String columnName : columns) {
+                sqlConnector.execute("ALTER TABLE `" + name + "` ADD INDEX (`" + columnName + "`);");
+            }
         }
     }
 }

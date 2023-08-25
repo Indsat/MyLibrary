@@ -1,8 +1,8 @@
-package ru.nicholas.bukkit.inventory.service;
+package ru.nicholas.library.bukkit.inventory.service;
 
 import org.bukkit.entity.Player;
-import ru.nicholas.bukkit.inventory.BaseInventory;
-import ru.nicholas.bukkit.inventory.alternative.PagedInventory;
+import ru.nicholas.library.bukkit.inventory.BaseInventory;
+import ru.nicholas.library.bukkit.inventory.alternative.PagedInventory;
 
 import java.util.HashMap;
 import java.util.Map;

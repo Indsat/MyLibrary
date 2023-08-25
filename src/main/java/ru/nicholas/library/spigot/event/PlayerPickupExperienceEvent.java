@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.event;
+package ru.nicholas.library.spigot.event;
 
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;

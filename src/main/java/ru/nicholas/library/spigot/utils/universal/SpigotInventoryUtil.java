@@ -1,9 +1,9 @@
-package ru.nicholas.spigot.utils.universal;
+package ru.nicholas.library.spigot.utils.universal;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import ru.nicholas.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
 
 import java.lang.reflect.Field;
 

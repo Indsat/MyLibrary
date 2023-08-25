@@ -1,17 +1,17 @@
-package ru.nicholas.core;
+package ru.nicholas.library.core;
 
 import org.bukkit.Bukkit;
-import ru.nicholas.bukkit.utils.VersionsUtil;
-import ru.nicholas.core.builder.*;
-import ru.nicholas.core.util.SkullUtils;
-import ru.nicholas.nms.TitlePackets;
-import ru.nicholas.nms.v1_16.CraftTitlePackets_v1_16;
-import ru.nicholas.nms.v1_17.CraftTitlePackets_v1_17;
-import ru.nicholas.paper.PaperAdapter;
-import ru.nicholas.spigot.SpigotAdapter;
-import ru.nicholas.spigot.utils.universal.SpigotInventoryUtil;
-import ru.nicholas.spigot.utils.universal.SpigotMessageUtil;
-import ru.nicholas.spigot.utils.universal.SpigotTextUtil;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.core.builder.*;
+import ru.nicholas.library.core.util.SkullUtils;
+import ru.nicholas.library.nms.TitlePackets;
+import ru.nicholas.library.nms.v1_16.CraftTitlePackets_v1_16;
+import ru.nicholas.library.nms.v1_17.CraftTitlePackets_v1_17;
+import ru.nicholas.library.paper.PaperAdapter;
+import ru.nicholas.library.spigot.SpigotAdapter;
+import ru.nicholas.library.spigot.utils.universal.SpigotInventoryUtil;
+import ru.nicholas.library.spigot.utils.universal.SpigotMessageUtil;
+import ru.nicholas.library.spigot.utils.universal.SpigotTextUtil;
 
 /**
  * Класс адаптер для версий и ядер

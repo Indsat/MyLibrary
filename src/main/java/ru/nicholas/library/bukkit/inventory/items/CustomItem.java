@@ -1,7 +1,7 @@
-package ru.nicholas.bukkit.inventory.items;
+package ru.nicholas.library.bukkit.inventory.items;
 
 import org.bukkit.inventory.ItemStack;
-import ru.nicholas.bukkit.inventory.click.Click;
+import ru.nicholas.library.bukkit.inventory.click.Click;
 
 import java.util.List;
 

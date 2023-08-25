@@ -1,4 +1,4 @@
-package ru.nicholas.core.providers;
+package ru.nicholas.library.core.providers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

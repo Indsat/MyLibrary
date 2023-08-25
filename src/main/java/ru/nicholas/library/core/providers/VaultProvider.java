@@ -1,4 +1,4 @@
-package ru.nicholas.core.providers;
+package ru.nicholas.library.core.providers;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;

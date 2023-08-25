@@ -1,8 +1,9 @@
-package ru.nicholas.library.nms;
+package ru.nicholas.library.nms.v1_16;
 
 import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import org.bukkit.entity.Player;
+import ru.nicholas.library.nms.TitlePackets;
 
 public class CraftTitlePackets_v1_16 implements TitlePackets {
 

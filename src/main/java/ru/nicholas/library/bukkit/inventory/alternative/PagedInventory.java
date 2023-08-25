@@ -1,13 +1,12 @@
-package ru.nicholas.bukkit.inventory.alternative;
+package ru.nicholas.library.bukkit.inventory.alternative;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import ru.nicholas.bukkit.inventory.BaseInventory;
-import ru.nicholas.bukkit.inventory.buttons.Button;
-import ru.nicholas.bukkit.inventory.exception.InvalidPageException;
-import ru.nicholas.bukkit.inventory.items.DefaultItem;
-import ru.nicholas.bukkit.inventory.service.InventoryService;
-import ru.nicholas.bukkit.utils.items.ItemUtil;
+import ru.nicholas.library.bukkit.inventory.BaseInventory;
+import ru.nicholas.library.bukkit.inventory.buttons.Button;
+import ru.nicholas.library.bukkit.inventory.exception.InvalidPageException;
+import ru.nicholas.library.bukkit.inventory.service.InventoryService;
+import ru.nicholas.library.bukkit.utils.InventoryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +58,9 @@ public abstract class PagedInventory {
     public abstract void generateInventory(Player player);
 
     public void openInventory(Player player) {
-        inventory.frame();
+        inventory.frame(player);
         inventory.generateInventory(player);
         inventory.setupItems();
-        inventory.frame();
         generateInventory(player);
         player.openInventory(inventory.getInventory());
         buildPage(player);
@@ -74,8 +72,8 @@ public abstract class PagedInventory {
             throw new InvalidPageException(page);
         }
 
-        inventory.getInventory().clear();
         this.page--;
+        clear();
         openInventory(player);
     }
 
@@ -84,8 +82,8 @@ public abstract class PagedInventory {
             throw new InvalidPageException(page);
         }
 
-        inventory.getInventory().clear();
         this.page++;
+        clear();
         openInventory(player);
     }
 
@@ -102,38 +100,38 @@ public abstract class PagedInventory {
     }
 
     private void buildPage(Player player) {
-
-        this.pagesCount = (int) Math.ceil((double) buttons.size() / slots.size());
+        buttons.clear();
+        inventory.frame(player);
+        inventory.generateInventory(player);
+        generateInventory(player);
+        inventory.setupItems();
+        int itemsPerPage = slots.size();
+        this.pagesCount = (int) Math.ceil((double) buttons.size() / itemsPerPage);
 
         if (page + 1 < pagesCount) {
             createNextButton(player);
         }
 
-        if (!(page - 1 < 0) ) {
+        if (page - 1 >= 0) {
             createPreviousButton(player);
         }
 
-        for (int i = 0; i < slots.size(); i++) {
-            int index = page * slots.size() + i;
-
-            if (buttons.size() <= index) {
-                return;
-            }
-
-            int slot = slots.get(i);
-            Button button = buttons.get(index);
-            button.setSlot(slot);
-            ItemStack itemStack = button.getItemStack();
-            inventory.setItem(slot, itemStack, button.getClick());
+        int startIndex = page * itemsPerPage;
+        int endIndex = Math.min(startIndex + itemsPerPage, buttons.size());
+        for (int i = startIndex; i < endIndex; i++) {
+            Button button = buttons.get(i);
+            int slotIndex = i - startIndex;
+            int slot = slots.get(slotIndex);
+            inventory.setItem(slot, button);
         }
     }
 
     private void createNextButton(Player player) {
-        inventory.setItem(nextButtonSlot, new Button(ItemUtil.createDefaultItem(DefaultItem.NEXT_PAGE_ITEM), (player1, type) -> forward(player)));
+        inventory.setItem(nextButtonSlot, new Button(InventoryUtil.createItem(inventory.getFileConfiguration(), player, "inventories.paged-inventory.next-button"), (player1, type) -> forward(player)));
     }
 
     private void createPreviousButton(Player player) {
-        inventory.setItem(backButtonSlot, new Button(ItemUtil.createDefaultItem(DefaultItem.PREVIOUS_PAGE_ITEM), (player1, type) -> backward(player)));
+        inventory.setItem(backButtonSlot, new Button(InventoryUtil.createItem(inventory.getFileConfiguration(), player, "inventories.paged-inventory.previous-button"), (player1, type) -> backward(player)));
     }
 
     public BaseInventory getInventory() {
@@ -143,13 +141,13 @@ public abstract class PagedInventory {
     public void clear() {
         buttons.clear();
         inventory.clear();
+        inventory.getInventory().clear();
     }
 
     public void update(Player player) {
-        clear();
-        generateInventory(player);
-        inventory.frame();
-        inventory.setupItems();
+        buttons.clear();
+        inventory.clear();
         buildPage(player);
     }
 }
+

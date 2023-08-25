@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.utils;
+package ru.nicholas.library.bukkit.utils;
 
 import org.bukkit.Bukkit;
 

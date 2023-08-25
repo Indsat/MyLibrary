@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.builder.v1_8;
+package ru.nicholas.library.spigot.builder.v1_8;
 
 import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Color;
@@ -7,8 +7,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
-import ru.nicholas.core.VersionAdapter;
-import ru.nicholas.core.builder.PotionBuilder;
+import ru.nicholas.library.core.VersionAdapter;
+import ru.nicholas.library.core.builder.PotionBuilder;
 
 import java.util.List;
 import java.util.Objects;

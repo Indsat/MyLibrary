@@ -1,7 +1,7 @@
-package ru.nicholas.spigot.builder.v1_12;
+package ru.nicholas.library.spigot.builder.v1_12;
 
-import ru.nicholas.core.builder.SkullBuilder;
-import ru.nicholas.spigot.builder.v1_8.SpigotSkullBuilder_v1_8;
+import ru.nicholas.library.core.builder.SkullBuilder;
+import ru.nicholas.library.spigot.builder.v1_8.SpigotSkullBuilder_v1_8;
 
 /**
  *

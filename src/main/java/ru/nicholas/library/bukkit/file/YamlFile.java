@@ -1,7 +1,8 @@
-package ru.nicholas.bukkit.file;
+package ru.nicholas.library.bukkit.file;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import ru.nicholas.bukkit.utils.ConfigurationUtil;
+import org.bukkit.plugin.Plugin;
+import ru.nicholas.library.bukkit.utils.ConfigurationUtil;
 
 import java.io.File;
 
@@ -11,22 +12,19 @@ import java.io.File;
 public class YamlFile {
 
     private final String name;
-
-    private final String path;
-
     private final File file;
-
     private final FileConfiguration configuration;
+    private final Plugin plugin;
 
-    public YamlFile(String path) {
+    public YamlFile(Plugin plugin, String fileName) {
+        this.plugin = plugin;
+        this.file = new File(fileName);
+        this.name = fileName;
+        this.configuration = ConfigurationUtil.loadConfiguration(plugin, name);
+    }
 
-        this.path = path;
-
-        this.file = new File(path);
-
-        this.name = file.getName().substring(file.getName().length() - 4);
-
-        this.configuration = ConfigurationUtil.loadConfiguration(name);
+    public Plugin getPlugin() {
+        return plugin;
     }
 
     public File getFile() {
@@ -37,12 +35,7 @@ public class YamlFile {
         return name;
     }
 
-    public String getPath() {
-        return path;
-    }
-
     public FileConfiguration getConfiguration() {
-
         return configuration;
     }
 }

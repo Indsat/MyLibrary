@@ -1,8 +1,8 @@
-package ru.nicholas.paper;
+package ru.nicholas.library.paper;
 
-import ru.nicholas.core.util.SkullUtils;
-import ru.nicholas.paper.utils.PaperSkullUtil;
-import ru.nicholas.spigot.SpigotAdapter;
+import ru.nicholas.library.core.util.SkullUtils;
+import ru.nicholas.library.paper.utils.PaperSkullUtil;
+import ru.nicholas.library.spigot.SpigotAdapter;
 
 /**
  * @author Nicholas Alexandrov 27.06.2023

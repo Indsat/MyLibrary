@@ -1,10 +1,10 @@
-package ru.nicholas.bukkit.inventory.updater;
+package ru.nicholas.library.bukkit.inventory.updater;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import ru.nicholas.bukkit.inventory.BaseInventory;
-import ru.nicholas.bukkit.inventory.alternative.PagedInventory;
-import ru.nicholas.bukkit.inventory.service.InventoryService;
+import ru.nicholas.library.bukkit.inventory.BaseInventory;
+import ru.nicholas.library.bukkit.inventory.alternative.PagedInventory;
+import ru.nicholas.library.bukkit.inventory.service.InventoryService;
 
 import java.util.Map;
 

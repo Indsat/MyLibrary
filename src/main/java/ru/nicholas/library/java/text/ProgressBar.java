@@ -1,4 +1,4 @@
-package ru.nicholas.java.text;
+package ru.nicholas.library.java.text;
 
 public class ProgressBar {
 

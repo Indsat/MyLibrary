@@ -1,8 +1,8 @@
-package ru.nicholas.bukkit.utils.items.deserialize;
+package ru.nicholas.library.bukkit.utils.items.deserialize;
 
 import org.bukkit.inventory.ItemStack;
-import ru.nicholas.core.VersionAdapter;
-import ru.nicholas.core.builder.SkullBuilder;
+import ru.nicholas.library.core.VersionAdapter;
+import ru.nicholas.library.core.builder.SkullBuilder;
 
 /**
  * Класс для десериализации текста в головы

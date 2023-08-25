@@ -1,9 +1,10 @@
-package ru.nicholas.library.nms;
+package ru.nicholas.library.nms.v1_16;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import ru.nicholas.library.nms.AbstractPacket;
 
 public class WrapperPlayServerTitle extends AbstractPacket {
     public static final PacketType TYPE = PacketType.Play.Server.TITLE;

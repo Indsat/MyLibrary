@@ -1,13 +1,14 @@
-package ru.nicholas.bukkit.inventory;
+package ru.nicholas.library.bukkit.inventory;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import ru.nicholas.bukkit.inventory.buttons.Button;
-import ru.nicholas.bukkit.inventory.click.Click;
-import ru.nicholas.bukkit.inventory.info.InventoryInfo;
-import ru.nicholas.bukkit.inventory.service.InventoryService;
+import ru.nicholas.library.bukkit.inventory.buttons.Button;
+import ru.nicholas.library.bukkit.inventory.click.Click;
+import ru.nicholas.library.bukkit.inventory.info.InventoryInfo;
+import ru.nicholas.library.bukkit.inventory.service.InventoryService;
 
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public interface BaseInventory extends InventoryHolder {
     default void openInventory(Player player) {
         generateInventory(player);
         setupItems();
-        frame();
+        frame(player);
         player.openInventory(getInventory());
         InventoryService.cache(player, this);
     }
@@ -61,5 +62,7 @@ public interface BaseInventory extends InventoryHolder {
 
     void update(Player player);
 
-    void frame();
+    void frame(Player player);
+
+    FileConfiguration getFileConfiguration();
 }

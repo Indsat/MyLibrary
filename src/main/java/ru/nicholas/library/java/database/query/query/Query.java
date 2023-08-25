@@ -1,4 +1,4 @@
-package ru.nicholas.java.database.query.query;
+package ru.nicholas.library.java.database.query.query;
 
 /**
  *

@@ -1,8 +1,8 @@
-package ru.nicholas.spigot.builder.v1_16;
+package ru.nicholas.library.spigot.builder.v1_16;
 
 import org.bukkit.Color;
-import ru.nicholas.core.builder.PotionEffectBuilder;
-import ru.nicholas.spigot.builder.v1_12.SpigotPotionEffectBuilder_v1_12;
+import ru.nicholas.library.core.builder.PotionEffectBuilder;
+import ru.nicholas.library.spigot.builder.v1_13.SpigotPotionEffectBuilder_v1_13;
 
 
 /**
@@ -10,7 +10,7 @@ import ru.nicholas.spigot.builder.v1_12.SpigotPotionEffectBuilder_v1_12;
  *
  * @author Nicholas Alexandrov 01.06.2023
  */
-public class SpigotPotionEffectBuilder_v1_16 extends SpigotPotionEffectBuilder_v1_12 {
+public class SpigotPotionEffectBuilder_v1_16 extends SpigotPotionEffectBuilder_v1_13 {
 
     @Deprecated
     @Override

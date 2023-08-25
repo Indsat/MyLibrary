@@ -1,7 +1,7 @@
-package ru.nicholas.spigot.builder.v1_15;
+package ru.nicholas.library.spigot.builder.v1_15;
 
-import ru.nicholas.core.builder.ItemBuilder;
-import ru.nicholas.spigot.builder.v1_12.SpigotItemBuilder_v1_12;
+import ru.nicholas.library.core.builder.ItemBuilder;
+import ru.nicholas.library.spigot.builder.v1_12.SpigotItemBuilder_v1_12;
 
 /**
  * Класс для создания предметов для версии 1.15

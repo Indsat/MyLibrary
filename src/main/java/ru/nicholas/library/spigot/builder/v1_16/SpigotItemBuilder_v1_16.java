@@ -1,9 +1,9 @@
-package ru.nicholas.spigot.builder.v1_16;
+package ru.nicholas.library.spigot.builder.v1_16;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import ru.nicholas.core.builder.ItemBuilder;
-import ru.nicholas.spigot.builder.v1_15.SpigotItemBuilder_v1_15;
+import ru.nicholas.library.core.builder.ItemBuilder;
+import ru.nicholas.library.spigot.builder.v1_15.SpigotItemBuilder_v1_15;
 
 /**
  * Класс для создания предметов для версии 1.16

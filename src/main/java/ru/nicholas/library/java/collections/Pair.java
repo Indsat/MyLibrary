@@ -1,4 +1,4 @@
-package ru.nicholas.java.collections;
+package ru.nicholas.library.java.collections;
 
 import java.util.Map;
 import java.util.Objects;

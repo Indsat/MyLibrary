@@ -1,4 +1,4 @@
-package ru.nicholas.core.util;
+package ru.nicholas.library.core.util;
 
 import org.bukkit.inventory.meta.SkullMeta;
 

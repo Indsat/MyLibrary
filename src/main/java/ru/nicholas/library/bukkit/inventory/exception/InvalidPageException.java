@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.inventory.exception;
+package ru.nicholas.library.bukkit.inventory.exception;
 
 /**
  * @author Nicholas Alexandrov 23.07.2023

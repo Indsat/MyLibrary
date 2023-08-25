@@ -1,4 +1,4 @@
-package ru.nicholas.spigot.utils.universal;
+package ru.nicholas.library.spigot.utils.universal;
 
 import org.bukkit.Color;
 import org.bukkit.potion.PotionEffect;

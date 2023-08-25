@@ -1,0 +1,8 @@
+main: ru.nicholas.library.MyLibrary
+api-version: 1.13
+version: '${project.version}'
+name: MyLibrary
+softdepend:
+  - PlaceholderAPI
+  - ProtocolLib
+  - Vault

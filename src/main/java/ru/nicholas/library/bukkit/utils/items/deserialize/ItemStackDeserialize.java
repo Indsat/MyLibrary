@@ -1,13 +1,18 @@
-package ru.nicholas.bukkit.utils.items.deserialize;
+package ru.nicholas.library.bukkit.utils.items.deserialize;
 
+import com.cryptomorin.xseries.XEnchantment;
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import ru.nicholas.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.bukkit.utils.VersionsUtil;
+import ru.nicholas.library.core.VersionAdapter;
+import ru.nicholas.library.core.builder.PotionEffectBuilder;
+
+import java.util.Optional;
 
 /**
  * Класс для десериализации текста в предметы
@@ -19,36 +24,61 @@ public class ItemStackDeserialize implements StringDeserialize<ItemStack> {
     @Override
     public ItemStack deserialize(String str) {
         String[] array = str.split(" ");
-        ItemStack itemStack = new ItemStack(Material.valueOf(array[0].split(":")[0]), Integer.parseInt(array[1]));
+        String[] item = array[0].split(":");
+        ItemStack itemStack;
+        Optional<XMaterial> xMaterial = XMaterial.matchXMaterial(item[0]);
+        if (xMaterial.isPresent()) {
+            Material material = xMaterial.get().parseMaterial();
+            if (item.length > 1) {
+                itemStack = new ItemStack(material, Integer.parseInt(item[1]));
+            } else {
+                itemStack = new ItemStack(material);
+            }
+        } else {
+            throw new NullPointerException("Can't identify material " + item[0]);
+        }
         ItemMeta itemMeta = itemStack.getItemMeta();
-        assert itemMeta != null;
 
-        if (itemMeta instanceof Damageable) {
-            ((Damageable) itemMeta).setDamage(Integer.parseInt(array[0].split(":")[1]));
+        if (itemMeta instanceof Damageable && item.length > 2) {
+            ((Damageable) itemMeta).setDamage(Integer.parseInt(item[2]));
         }
 
         if (VersionsUtil.getServerVersion().isNewerThan(VersionsUtil.ServerVersion.v1_14)) {
-            if (array[0].split(":").length > 2) {
-                itemMeta.setCustomModelData(Integer.parseInt(array[0].split(":")[2]));
+            if (array[0].split(":").length > 3) {
+                itemMeta.setCustomModelData(Integer.parseInt(item[3]));
             }
         }
 
-        if (itemMeta instanceof PotionMeta) {
+        if (itemStack.getType() == Material.POTION || itemStack.getType() == Material.SPLASH_POTION) {
             PotionMeta potionMeta = (PotionMeta) itemMeta;
 
             for (int i = 1; i < array.length; i++) {
-                String[] potionData = array[i].split(":");
-                if (potionData.length == 3) {
-                    PotionEffectType potionEffectType = PotionEffectType.getByName(potionData[0]);
-                    int duration = Integer.parseInt(potionData[1]);
-                    int amplifier = Integer.parseInt(potionData[2]);
-                    assert potionEffectType != null;
-                    potionMeta.addCustomEffect(new PotionEffect(potionEffectType, duration, amplifier), true);
+                String effect = array[i];
+                PotionEffectBuilder potionEffectBuilder = VersionAdapter.getPotionEffectBuilder();
+                String[] arrayEffect = effect.split(":");
+                potionEffectBuilder.setType(arrayEffect[0].toUpperCase());
+                if (arrayEffect.length > 1) {
+                    potionEffectBuilder.setDuration(Integer.parseInt(arrayEffect[1]) * 20);
+                    if (arrayEffect.length > 2) {
+                        potionEffectBuilder.setAmplifier(Integer.parseInt(arrayEffect[2]));
+                    }
+                }
+
+                potionMeta.addCustomEffect(potionEffectBuilder.build(), false);
+            }
+
+            itemStack.setItemMeta(potionMeta);
+        } else {
+            for (int i = 1; i < array.length; i++) {
+                String[] enchantmentData = array[i].split(":");
+                if (enchantmentData.length == 2) {
+                    Enchantment enchantment = XEnchantment.matchXEnchantment(enchantmentData[0]).get().getEnchant();
+                    int level = Integer.parseInt(enchantmentData[1]);
+                    itemStack.addEnchantment(enchantment, level);
                 }
             }
         }
 
-        itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 }

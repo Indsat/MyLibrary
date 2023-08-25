@@ -1,4 +1,4 @@
-package ru.nicholas.bukkit.utils.items.serialize;
+package ru.nicholas.library.bukkit.utils.items.serialize;
 
 /**
  * @author Nicholas Alexandrov 18.07.2023
