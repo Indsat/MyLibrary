@@ -64,7 +64,7 @@ public class ItemStackDeserialize implements StringDeserialize<ItemStack> {
                     }
                 }
 
-                potionMeta.addCustomEffect(potionEffectBuilder.build(), false);
+                potionMeta.addCustomEffect(potionEffectBuilder.build(), true);
             }
 
             itemStack.setItemMeta(potionMeta);

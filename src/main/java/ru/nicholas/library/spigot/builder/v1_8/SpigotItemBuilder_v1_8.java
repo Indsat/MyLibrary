@@ -15,6 +15,7 @@ import ru.nicholas.library.core.VersionAdapter;
 import ru.nicholas.library.core.builder.ItemBuilder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -37,11 +38,7 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
 
     @Override
     public void update(ItemStack itemStack) {
-
-        itemStack.setItemMeta(this.itemMeta);
-
         this.itemStack = itemStack;
-
         this.itemMeta = itemStack.getItemMeta();
     }
 
@@ -54,17 +51,14 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
 
     @Override
     public ItemBuilder setDurability(short durability) {
-
         this.itemStack.setDurability(durability);
-
         return this;
     }
 
     @Override
     public ItemBuilder setItem(ItemStack itemstack) {
-
         this.itemStack = itemstack;
-
+        this.itemMeta = itemStack.getItemMeta();
         return this;
     }
 
@@ -72,7 +66,6 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
     public ItemBuilder addLine(String line) {
 
         this.itemMeta.getLore().add(VersionAdapter.TextUtil().colorize(line));
-
         return this;
     }
 
@@ -80,7 +73,6 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
     public ItemBuilder setLore(List<String> lines) {
 
         this.itemMeta.setLore(VersionAdapter.TextUtil().colorize(lines));
-
         return this;
     }
 
@@ -124,9 +116,7 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
 
     @Override
     public ItemBuilder addEnchant(Enchantment enchantment, int level) {
-
         this.itemMeta.addEnchant(Objects.requireNonNull(XEnchantment.matchXEnchantment(enchantment).getEnchant()), level, true);
-
         return this;
     }
 
@@ -134,7 +124,6 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
     public ItemBuilder removeEnchant(Enchantment enchantment) {
 
         this.itemMeta.removeEnchant(Objects.requireNonNull(XEnchantment.matchXEnchantment(enchantment).getEnchant()));
-
         return this;
     }
 
@@ -156,8 +145,6 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
     public ItemBuilder setAmount(long count) {
 
         this.itemStack.setAmount( (int) count);
-
-        this.update(this.itemStack);
 
         return this;
     }
@@ -181,27 +168,21 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
 
         this.itemStack.setType(material);
 
-        update(this.itemStack);
-
         return this;
     }
 
     @Override
     public ItemBuilder setType(String material) {
-
         Optional<XMaterial> optional = XMaterial.matchXMaterial(material);
-
         optional.ifPresent(xMaterial -> itemStack.setType(Objects.requireNonNull(xMaterial.parseMaterial())));
+        this.update(itemStack);
 
         return this;
     }
 
     @Override
     public ItemBuilder setMeta(ItemMeta meta) {
-
         this.itemMeta = meta;
-
-        update(this.itemStack);
 
         return this;
     }
@@ -225,9 +206,7 @@ public class SpigotItemBuilder_v1_8 implements ItemBuilder {
 
     @Override
     public ItemStack build() {
-
         this.itemStack.setItemMeta(itemMeta);
-
         return this.itemStack;
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>MyLibrary</artifactId>
-    <version>1.0.4-RELEASE</version>
+    <version>1.0.8-RELEASE</version>
 
     <properties>
         <java.version>8</java.version>
