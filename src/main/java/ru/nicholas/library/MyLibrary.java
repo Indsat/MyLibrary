@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.nicholas.library.bukkit.inventory.listeners.InventoryListener;
 import ru.nicholas.library.bukkit.inventory.updater.InventoryUpdater;
 import ru.nicholas.library.core.providers.ProviderService;
+import ru.nicholas.library.spigot.listener.PlayerPickupExperienceListener;
 
 /**
  * @author Nicholas Alexandrov 06.08.2023
@@ -19,6 +20,7 @@ public class MyLibrary extends JavaPlugin {
         library = this;
         ProviderService.load();
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerPickupExperienceListener(), this);
         this.inventoryUpdater = new InventoryUpdater();
         inventoryUpdater.runTaskTimerAsynchronously(this, 1L, 10L);
     }

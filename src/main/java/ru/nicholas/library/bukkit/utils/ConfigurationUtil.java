@@ -1,10 +1,13 @@
 package ru.nicholas.library.bukkit.utils;
 
+import com.sun.xml.internal.ws.api.message.stream.InputStreamMessage;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -48,5 +51,9 @@ public class ConfigurationUtil
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static FileConfiguration reloadFile(Plugin plugin, String fileName) {
+        return loadConfiguration(plugin, fileName);
     }
 }

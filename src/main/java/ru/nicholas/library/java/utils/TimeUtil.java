@@ -11,6 +11,53 @@ import java.util.GregorianCalendar;
 
 public class TimeUtil {
 
+    public static String getTime(long seconds) {
+        long years = seconds / (365 * 24 * 60 * 60);
+        seconds -= years * (365 * 24 * 60 * 60);
+
+        long months = seconds / (30 * 24 * 60 * 60);
+        seconds -= months * (30 * 24 * 60 * 60);
+
+        long weeks = seconds / (7 * 24 * 60 * 60);
+        seconds -= weeks * (7 * 24 * 60 * 60);
+
+        long days = seconds / (24 * 60 * 60);
+        seconds -= days * (24 * 60 * 60);
+
+        long hours = seconds / (60 * 60);
+        seconds -= hours * (60 * 60);
+
+        long minutes = seconds / 60;
+        seconds -= minutes * 60;
+
+        StringBuilder sb = new StringBuilder();
+        if (years > 0) {
+            sb.append(years).append(" ").append(getTimeUnitName(years, TimeUnit.YEARS)).append(", ");
+        }
+        if (months > 0) {
+            sb.append(months).append(" ").append(getTimeUnitName(months, TimeUnit.MONTHS)).append(", ");
+        }
+        if (weeks > 0) {
+            sb.append(weeks).append(" ").append(getTimeUnitName(weeks, TimeUnit.WEEKS)).append(", ");
+        }
+        if (days > 0) {
+            sb.append(days).append(" ").append(getTimeUnitName(days, TimeUnit.DAYS)).append(", ");
+        }
+        if (hours > 0) {
+            sb.append(hours).append(" ").append(getTimeUnitName(hours, TimeUnit.HOURS)).append(", ");
+        }
+        if (minutes > 0) {
+            sb.append(minutes).append(" ").append(getTimeUnitName(minutes, TimeUnit.MINUTES)).append(", ");
+        }
+        if (seconds > 0 || sb.length() == 0) {
+            sb.append(seconds).append(" ").append(getTimeUnitName(seconds, TimeUnit.SECONDS));
+        } else {
+            sb.setLength(sb.length() - 2);
+        }
+
+        return sb.toString();
+    }
+
     public static long parseStringToTime(String str) {
 
         long time = 0;

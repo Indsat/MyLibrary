@@ -13,7 +13,7 @@ public class YamlFile {
 
     private final String name;
     private final File file;
-    private final FileConfiguration configuration;
+    private FileConfiguration configuration;
     private final Plugin plugin;
 
     public YamlFile(Plugin plugin, String fileName) {
@@ -37,5 +37,13 @@ public class YamlFile {
 
     public FileConfiguration getConfiguration() {
         return configuration;
+    }
+
+    public void saveConfiguration() {
+        ConfigurationUtil.saveFile(configuration, plugin.getDataFolder().getAbsolutePath(), name);
+    }
+
+    public void reloadConfiguration() {
+        this.configuration = ConfigurationUtil.loadConfiguration(plugin, name);
     }
 }

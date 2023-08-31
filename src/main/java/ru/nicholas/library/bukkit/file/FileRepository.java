@@ -49,4 +49,13 @@ public class FileRepository {
 
         throw new FileNotFoundException("Could not find a file with the name " + name);
     }
+
+    public static void reload(Plugin plugin) {
+        files.stream()
+                .filter(yamlFile -> yamlFile.getPlugin().getName().equals(plugin.getName()))
+                .forEach(yamlFile -> {
+                    yamlFile.reloadConfiguration();
+                    yamlFile.saveConfiguration();
+                });
+    }
 }
