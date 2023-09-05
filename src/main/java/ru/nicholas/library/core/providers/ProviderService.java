@@ -15,10 +15,12 @@ public class ProviderService {
         if (Bukkit.getPluginManager().isPluginEnabled("Vault")) {
             Plugin plugin = Bukkit.getPluginManager().getPlugin("Vault");
             String version = plugin.getDescription().getVersion();
-
             if (version.compareTo("1.7") >= 0) {
                 Bukkit.getLogger().info("Vault found. use Vault API");
                 vaultProvider = new VaultProvider();
+                vaultProvider.setupEconomy();
+                vaultProvider.setupPermission();
+                vaultProvider.setupChat();
             } else {
                 Bukkit.getLogger().warning("Vault version < 1.7 not supported. Ignore this dependence.");
             }

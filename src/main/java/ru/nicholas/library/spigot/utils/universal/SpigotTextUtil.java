@@ -4,6 +4,9 @@ import net.md_5.bungee.api.ChatColor;
 import ru.nicholas.library.bukkit.utils.VersionsUtil;
 import ru.nicholas.library.java.text.ReplaceData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,8 +52,13 @@ public class SpigotTextUtil  {
     }
 
     public List<String> setReplaces(List<String> lore, ReplaceData... replacesData) {
-        lore.replaceAll(str -> setReplaces(str, replacesData));
-        return lore;
+        List<String> result = new ArrayList<>();
+        for (String str : lore) {
+            String replaced = setReplaces(str, replacesData);
+            String[] lines = replaced.split("\n");
+            result.addAll(Arrays.asList(lines));
+        }
+        return result;
     }
 
     public String setReplaces(String text, ReplaceData... replacesData) {
