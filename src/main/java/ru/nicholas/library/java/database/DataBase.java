@@ -23,7 +23,7 @@ public class DataBase {
 
     public Connector connect(String... params) {
         if (type == DataBaseType.MySQL) {
-            if (params.length < 2) throw new IllegalArgumentException("Cant connect with database because parameters are not specified");
+            if (params.length != 3) throw new IllegalArgumentException("Cant connect with database because parameters are not specified");
             return new MySQLConnector(params[0], params[1], params[2]);
         } else if (type == DataBaseType.SQLite) {
             Objects.requireNonNull(plugin, "Cant connect with database because parameters are not specified");
