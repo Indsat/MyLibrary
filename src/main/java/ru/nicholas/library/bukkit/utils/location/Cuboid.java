@@ -207,17 +207,19 @@ public class Cuboid implements Iterable<Block>, Cloneable
         World w = this.getWorld();
 
         // Дальний
-        res[0] = w.getBlockAt(this.xMax, this.yMax, this.zMax); // Правый верхний угол
-        res[1] = w.getBlockAt(this.xMax, this.yMax, this.zMin); // Левый верхний угол
-        res[2] = w.getBlockAt(this.xMax, this.yMin, this.zMax); // Правый нижний угол
-        res[3] = w.getBlockAt(this.xMax, this.yMin, this.zMin); // Левый нижний угол
+        res[0] = w.getBlockAt(this.xMax, this.yMax, this.zMax); // левый северный верхний угол
+        res[1] = w.getBlockAt(this.xMax, this.yMax, this.zMin); // левый южный верхний угол
+        res[2] = w.getBlockAt(this.xMin, this.yMax, this.zMax); // правый северный верхний угол
+        res[3] = w.getBlockAt(this.xMin, this.yMax, this.zMin); // Правый южный верхний угол
+
+
 
         // ---------------------------------------------
 
-        res[4] = w.getBlockAt(this.xMin, this.yMax, this.zMax); // Правый верхний угол
-        res[5] = w.getBlockAt(this.xMin, this.yMax, this.zMin); // Левый верхний угол
-        res[6] = w.getBlockAt(this.xMin, this.yMin, this.zMax); // Правый верхний угол
-        res[7] = w.getBlockAt(this.xMin, this.yMin, this.zMin); // Левый нижний угол
+        res[4] = w.getBlockAt(this.xMax, this.yMin, this.zMax); // левый северный нижний угол
+        res[5] = w.getBlockAt(this.xMax, this.yMin, this.zMin); // левый южный нижний угол
+        res[6] = w.getBlockAt(this.xMin, this.yMin, this.zMax); //правый северный нижний угол
+        res[7] = w.getBlockAt(this.xMin, this.yMin, this.zMin); // Правый южный нижнмй угол
         return res;
     }
 
