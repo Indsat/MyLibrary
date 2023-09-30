@@ -6,10 +6,10 @@
 
     <groupId>org.example</groupId>
     <artifactId>MyLibrary</artifactId>
-    <version>1.1.3-RELEASE</version>
+    <version>1.1.4-RELEASE</version>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -39,6 +39,8 @@
                             <filters>
                                 <filter>
                                     <artifact>com.github.cryptomorin:XSeries</artifact>
+                                    <artifact>com.fasterxml.jackson.core:jackson-databind</artifact>
+                                    <artifact>xyz.xenondevs.invui:invui</artifact>
                                     <includes>
                                         <include>**</include>
                                     </includes>
@@ -58,6 +60,10 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>xenondevs</id>
+            <url>https://repo.xenondevs.xyz/releases</url>
+        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -85,6 +91,17 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>xyz.xenondevs.invui</groupId>
+            <artifactId>invui</artifactId>
+            <version>1.15</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>

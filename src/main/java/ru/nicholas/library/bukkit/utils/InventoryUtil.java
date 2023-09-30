@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import ru.nicholas.library.bukkit.file.FileOperations;
-import ru.nicholas.library.bukkit.inventory.items.CustomItem;
 import ru.nicholas.library.core.VersionAdapter;
 import ru.nicholas.library.java.text.ReplaceData;
 
@@ -42,51 +41,5 @@ public class InventoryUtil {
         }
 
         return itemStack;
-    }
-
-    public static List<CustomItem> loadCustomItems(FileConfiguration fileConfiguration, Player player, String path, ReplaceData... replacesData) {
-        ConfigurationSection configurationSection = fileConfiguration.getConfigurationSection(path);
-        List<CustomItem> customItems = new ArrayList<>();
-
-        for (String s : configurationSection.getKeys(false)) {
-            String type = configurationSection.getString(s + ".type");
-            if (!type.equalsIgnoreCase("special")) {
-                String displayName = PlaceholderAPI.setPlaceholders(player, VersionAdapter.TextUtil().colorize(configurationSection.getString(s + ".displayName")));
-                String material = configurationSection.getString(s + ".item.material");
-                String url = configurationSection.getString(s + ".item.head");
-                List<String> lore = PlaceholderAPI.setPlaceholders(player, VersionAdapter.TextUtil().colorize(configurationSection.getStringList( s + ".lore")));
-                List<String> commands = configurationSection.getStringList(s + ".commands");
-                int customModeData = configurationSection.getInt(s + ".customModelData", 0);
-                List<Integer> slots = configurationSection.getIntegerList(s + ".slots");
-                String action = configurationSection.getString(s + ".action", "");
-                String permission = configurationSection.getString(s + ".permission", "");
-                ItemStack itemStack;
-
-                lore = VersionAdapter.TextUtil().setReplaces(lore, replacesData);
-
-                if (material.equalsIgnoreCase("head")) {
-                    itemStack = VersionAdapter.getSkullBuilder()
-                            .setTexture(url)
-                            .setLore(lore)
-                            .setDisplayName(displayName)
-                            .addFlag(ItemFlag.HIDE_ENCHANTS)
-                            .addFlag(ItemFlag.HIDE_DESTROYS)
-                            .addFlag(ItemFlag.HIDE_ATTRIBUTES)
-                            .build();
-                } else {
-                    itemStack = VersionAdapter.getItemBuilder()
-                            .setType(material)
-                            .setDisplayName(displayName)
-                            .setLore(lore)
-                            .addFlag(ItemFlag.HIDE_ENCHANTS)
-                            .addFlag(ItemFlag.HIDE_DESTROYS)
-                            .addFlag(ItemFlag.HIDE_ATTRIBUTES)
-                            .build();
-                }
-                CustomItem customItem = new CustomItem(s, action, commands, permission, slots, itemStack, customModeData, null);
-                customItems.add(customItem);
-            }
-        }
-        return customItems;
     }
 }

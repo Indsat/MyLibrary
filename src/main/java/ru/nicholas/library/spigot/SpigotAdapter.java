@@ -1,7 +1,5 @@
 package ru.nicholas.library.spigot;
 
-import org.bukkit.Bukkit;
-import ru.nicholas.library.MyLibrary;
 import ru.nicholas.library.bukkit.utils.VersionsUtil;
 import ru.nicholas.library.core.builder.*;
 import ru.nicholas.library.core.util.SkullUtils;
@@ -16,7 +14,6 @@ import ru.nicholas.library.spigot.builder.v1_8.SpigotItemBuilder_v1_8;
 import ru.nicholas.library.spigot.builder.v1_8.SpigotPotionBuilder_v1_8;
 import ru.nicholas.library.spigot.builder.v1_8.SpigotPotionEffectBuilder_v1_8;
 import ru.nicholas.library.spigot.builder.v1_8.SpigotSkullBuilder_v1_8;
-import ru.nicholas.library.spigot.listener.PlayerPickupExperienceListener;
 import ru.nicholas.library.spigot.utils.universal.SpigotInventoryUtil;
 import ru.nicholas.library.spigot.utils.universal.SpigotMessageUtil;
 import ru.nicholas.library.spigot.utils.universal.SpigotTextUtil;
@@ -47,9 +44,6 @@ public class SpigotAdapter {
     private final Class<? extends PotionEffectBuilder> potionEffectBuilder;
 
     {
-
-        Bukkit.getPluginManager().registerEvents(new PlayerPickupExperienceListener(), MyLibrary.getLibrary());
-
         VersionsUtil.ServerVersion serverVersion = VersionsUtil.getServerVersion();
 
         textUtil = new SpigotTextUtil();

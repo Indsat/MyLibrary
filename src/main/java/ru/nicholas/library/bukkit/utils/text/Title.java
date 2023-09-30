@@ -18,20 +18,10 @@ public class Title {
 
         String[] args = text.split("%new%");
 
-        if (args[0] != null && args[1] == null) {
-
+        if (args.length == 1) {
             titlePackets.sendTitle(player, args[0], " ", fadeIn, stay, fadeOut);
-        }
-
-        if (args[0] != null && args[1] != null) {
-
+        } else if (args.length >= 2) {
             titlePackets.sendTitle(player, args[0], args[1], fadeIn, stay, fadeOut);
-
-        }
-
-        if (args[1] != null && args[0] == null) {
-
-            titlePackets.sendTitle(player, "", args[1], fadeIn, stay, fadeOut);
         }
     }
 
