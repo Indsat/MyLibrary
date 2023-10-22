@@ -4,9 +4,6 @@ import org.bukkit.Bukkit;
 import ru.nicholas.library.bukkit.utils.VersionsUtil;
 import ru.nicholas.library.core.builder.*;
 import ru.nicholas.library.core.util.SkullUtils;
-import ru.nicholas.library.nms.TitlePackets;
-import ru.nicholas.library.nms.v1_16.CraftTitlePackets_v1_16;
-import ru.nicholas.library.nms.v1_17.CraftTitlePackets_v1_17;
 import ru.nicholas.library.paper.PaperAdapter;
 import ru.nicholas.library.spigot.SpigotAdapter;
 import ru.nicholas.library.spigot.utils.universal.SpigotInventoryUtil;
@@ -22,33 +19,11 @@ public class VersionAdapter {
 
     private static final SpigotAdapter adapter;
 
-    private static final TitlePackets titlePackets;
-
     private static final VersionsUtil.ServerVersion serverVersion = VersionsUtil.getServerVersion();
 
     private static final String version = Bukkit.getVersion();
 
     static {
-
-        switch (serverVersion) {
-
-            case v1_20:
-            case v1_19:
-            case v1_18:
-            case v1_17: {
-
-                titlePackets = new CraftTitlePackets_v1_17();
-
-                break;
-            }
-
-            default: {
-
-                titlePackets = new CraftTitlePackets_v1_16();
-
-                break;
-            }
-        }
 
         adapter = (version.contains("Paper") || version.contains("Purpur")) ? new PaperAdapter() : new SpigotAdapter();
     }
@@ -85,10 +60,6 @@ public class VersionAdapter {
     public static MessageBuilder getMessageBuilder() {
 
         return adapter.MessageBuilder();
-    }
-
-    public static TitlePackets getTitlePackets() {
-        return titlePackets;
     }
 
     public static SkullUtils SkullUtils() {

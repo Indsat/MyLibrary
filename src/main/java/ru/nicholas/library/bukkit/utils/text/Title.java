@@ -2,26 +2,19 @@ package ru.nicholas.library.bukkit.utils.text;
 
 import org.bukkit.entity.Player;
 import ru.nicholas.library.core.VersionAdapter;
-import ru.nicholas.library.nms.TitlePackets;
 
 import java.util.Objects;
 
 public class Title {
 
     public static void sendTitle(Player player, String text, int fadeIn, int stay, int fadeOut) {
-
         if (text == null) return;
-
-        TitlePackets titlePackets = VersionAdapter.getTitlePackets();
-
         text = VersionAdapter.TextUtil().colorize(text);
-
         String[] args = text.split("%new%");
-
         if (args.length == 1) {
-            titlePackets.sendTitle(player, args[0], " ", fadeIn, stay, fadeOut);
+            player.sendTitle(args[0], " ", fadeIn, stay, fadeOut);
         } else if (args.length >= 2) {
-            titlePackets.sendTitle(player, args[0], args[1], fadeIn, stay, fadeOut);
+            player.sendTitle(args[0], args[1], fadeIn, stay, fadeOut);
         }
     }
 

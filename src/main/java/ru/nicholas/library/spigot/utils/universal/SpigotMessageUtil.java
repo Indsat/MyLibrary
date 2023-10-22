@@ -18,33 +18,21 @@ import java.util.Optional;
 public class SpigotMessageUtil {
 
     public void sendMessage(CommandSender commandSender, String object) {
-
         if (commandSender instanceof Player) {
-
             Player player = (Player) commandSender;
-
             String[] strings = object.split(";");
-
             Arrays.stream(strings).forEach(string -> {
-
                 if (string.startsWith("sound:")) {
-
                     string = string.substring("sound:".length());
-
                     Optional<XSound> optional = XSound.matchXSound(string.toUpperCase());
-
                     optional.ifPresent(xSound -> {
-
                         assert xSound.parseSound() != null;
-
                         player.playSound(player.getLocation(), xSound.parseSound(), 2, 1);
                     });
-
-                } else if (string.contains("title:")) {
-                    Title.sendTitle(player, string.replace("title:", ""));
-
-                } else if (string.contains("actionbar:")) {
-                    ActionBar.sendActionBar(player, string.replace("actionbar:", ""));
+                } else if (string.startsWith("title:")) {
+                    Title.sendTitle(player, string.substring("title:".length()));
+                } else if (string.startsWith("actionbar:")) {
+                    ActionBar.sendActionBar(player, string.substring("actionbar:".length()));
                 } else {
                     player.sendMessage(VersionAdapter.TextUtil().colorize(string));
                 }
@@ -53,7 +41,6 @@ public class SpigotMessageUtil {
     }
 
     public void sendMessage(CommandSender commandSender, List<String> text) {
-
         text.forEach(str -> sendMessage(commandSender, str));
     }
 
